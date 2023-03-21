@@ -410,7 +410,8 @@ void RedBlackTree::inOrderTraversal(Node *node) {
     if (node == NULL)
     return;
     inOrderTraversal(node->left);
-    std::cout << node->key << " ";
+    string color = node->color == 0 ? "Red":"Black" ;
+    std::cout << "( " << node->key << " ," << color << " )" << endl;
     inOrderTraversal(node->right);
 }
 

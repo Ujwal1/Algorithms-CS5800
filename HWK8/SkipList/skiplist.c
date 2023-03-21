@@ -63,10 +63,10 @@ void printList()
 {
 	node_t* head = headh;
 	
-	printf("current skip list is: \n");
+	printf("Skip list current state is: \n");
 	while (head != NULL) 
 	{
-		printf("level %d :", head->key);
+		printf("Level %d :", head->key);
 		node_t* tmp = head->right;
 		while (tmp != NULL) 
 		{
@@ -84,7 +84,7 @@ void printList()
 // the node; otherwise return the place where it can insert
 node_t* find(int key)
 {
-	printf("Start to search %d --->\n", key);
+	printf("Starting to search %d ....\n", key);
 	node_t* tmp = headh;//start search the right head to enter
 	while (tmp != NULL)
 	{
@@ -95,7 +95,7 @@ node_t* find(int key)
 				printf("Go down\n");
 				tmp = tmp->down; // find the lowest one to return
 			}
-			printf("find the key\n");
+			printf("Found the key\n");
 			return tmp;
 		}
 		if (tmp->right != NULL)
@@ -132,7 +132,7 @@ node_t* find(int key)
 			}
 		}
 	}
-	printf("Error occurs. Pleas start to debug.\n");
+	printf("No such key error.\n");
 	return tmp;//there is no such a key
 }
 
@@ -142,7 +142,7 @@ void insertNewLevel(node_t* tmp)
 	tmp->up = newnode;
 	newnode->down = tmp;
 
-	//find the left node in upper level
+	//find the left node in the upper level
 	node_t* leftone = tmp->left;
 
 	while (leftone->up == NULL && leftone->isHead == 0) 
@@ -175,16 +175,16 @@ void insertNewLevel(node_t* tmp)
 	}
 }
 
-void myInsert(int key) 
+void insert(int key) 
 {
 	node_t* tmp = find(key);
 	if (tmp == NULL) 
 	{
-		printf("Error, start to debug....");
+		printf("Error!");
 		return;
 	}
 	if (tmp->key == key) {
-		printf("Item %d already exists.\n", key);
+		printf("Item %d already present in the list.\n", key);
 		printList();
 		return;
 	}
@@ -218,7 +218,7 @@ void checkHead()
 	headh = tmp;
 }
 
-void myDelete(int key)
+void delete(int key)
 {
 	node_t* tmp = find(key);
 	if (tmp->key != key) {
@@ -256,27 +256,27 @@ int main()
 	char buf[1024];
 	while (1) {
 
-		puts("Enter your command: insert x, delete x, lookup x, enter exit to exit\n");
-		puts("For insert, delete, and lookup, Format: 'COMMAND_X_Enter'. \n Give a space after the number, and then press enter");
+		puts("Enter your command: insert x, delete x, find x, enter quit to exit\n");
+		puts("For insert, delete, and find, Format: 'COMMAND_X_Enter'. \n Give a space after the number, and then press enter");
 		fgets( buf, sizeof(buf), stdin ); 
 		char command[100][80];
 		split(command, buf, " ");
 		if (!strcmp(command[0], "insert")) 
 		{
-			myInsert(strToInt(command[1]));
+			insert(strToInt(command[1]));
 			printf("\n");
 		}
 		else if (!strcmp(command[0], "delete")) 
 		{
-			myDelete(strToInt(command[1]));
+			delete(strToInt(command[1]));
 			printf("\n");
 		}
-		else if (!strcmp(command[0], "lookup")) 
+		else if (!strcmp(command[0], "find")) 
 		{
 			find(strToInt(command[1]));
 			printf("\n");
 		}
-		else if (!strcmp(command[0], "exit")) 
+		else if (!strcmp(command[0], "quit")) 
 		{
 			printf("\n");
 			break;

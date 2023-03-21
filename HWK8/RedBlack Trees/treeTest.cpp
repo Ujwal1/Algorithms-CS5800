@@ -19,7 +19,7 @@ int main() {
 
     string command;
     int key;
-    cout << "\nCommands: insert x, sort, search x, min, max, successor x, predecessor x, exit" << endl;
+    cout << "\nCommands: insert x, delete x, sort, search x, min, max, successor x, predecessor x, exit" << endl;
     while (true) {
         cout << "\n\nEnter command: ";
         cin >> command;
@@ -30,7 +30,11 @@ int main() {
             cin >> key;
             tree.insert(key);
             tree.printHeight();
-        } else if (command == "sort") {
+        } else if (command == "delete"){
+            cin>>key;
+            tree.remove(key);
+            tree.printHeight();
+        }else if (command == "sort") {
             tree.sort();
             tree.printHeight();
         } else if (command == "search") {
