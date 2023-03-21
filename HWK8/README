@@ -1,0 +1,25 @@
+TO run Hashing:
+
+It reads the textFile Alice.txt and hashes it.
+
+>> cd Hashing
+>> make
+>> cd build
+>> ./hash 
+
+To run RedBlacktrees:
+
+>> cd RedBlack\ Trees/
+>> make
+>> ./treeTest
+
+Follow the commands to operate on tree. The initial tree is constructed using the space separated numbers in the file input.txt
+
+To run SkipList:
+
+>> cd SkipList
+>> gcc skipList.C
+>> ./a.out
+
+Follow the instructions to do operations on the skiplist. Remember to follow any command with a space and then enter to execute it
+
